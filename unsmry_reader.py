@@ -194,7 +194,6 @@ class SummaryData:
         self.group_names = list()
         self.vector_names = list()
         for keyword, wgname in list(zip(self.keywords_section, self.wgnames_section)):
- #           print('keyword: {}, wgname: {}'.format(keyword, wgname))
             if keyword[0] == 'W' and wgname not in self.well_names:
                 self.well_names.append(wgname)
             elif keyword[0] == 'G' and wgname not in self.group_names:
@@ -276,7 +275,6 @@ class SummaryData:
             if block_length != end_block_length:
                 raise Exception('Start block length ({}) not equal to end block length ({}).'.format(block_length, 
                                                                                                      end_block_length))
-            #print (block)
             i += len(block)
             section_results += block
         if print_results:
@@ -312,11 +310,9 @@ class SummaryData:
         while i <= num_records:
             block_length = self.__read_integers(f)[0]
             if target > (i + block_length//type_length) or target < i:
-                #print('Current record: {}, block length: {}, target: {} - Skipping block'.format(i, block_length, target))
                 f.seek(block_length, 1)
             else:
                 skip_num = (target - i) * type_length
-                #print('Current record: {}, block length: {}, target: {} - Skipping {}, reading 1, skipping {}'.format(i, block_length//type_length, target, skip_num, block_length-skip_num-2))
                 if record_type == 'INTE':
                     f.seek(skip_num, 1)
                     result = self.__read_integers(f)
@@ -343,7 +339,6 @@ class SummaryData:
             if block_length != end_block_length:
                 raise Exception('Start block length ({}) not equal to end block length ({}).'.format(block_length, 
                                                                                                      end_block_length))
-            #print (block)
             i += block_length//type_length
             
         return result
@@ -501,8 +496,6 @@ class SummaryData:
         else:
             raise Exception('Unexpected keyword first letter ({}) in keyword {}'.format(keyword[0], keyword))
 
-        
-        #print(i)
         if not self.__on_demand:
             #Return vector from whole summary file that has already been read
             return self.dfparams[i] * sign_mult
@@ -547,12 +540,6 @@ class SummaryData:
         length = 8
         for i in range(0,count//length):
             strings.append(f.read(length).decode(encoding='utf-8', errors='strict').strip())
-    #        print('iteration {}'.format(i))
-    #        a = f.read(length)
-    #        print(a)
-    #        b = a.decode(encoding='utf-8', errors='strict')
-    #        print(b)
-    #        strings.append(b)
         return strings
 
     def __read_strings_short(self, f, count=4):

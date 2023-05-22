@@ -62,7 +62,7 @@ class SummaryData:
         self.__on_demand = on_demand
         
         if self.__on_demand == False:
-            self.____read_unsmry(print_results=print_unsmry)
+            self.__read_unsmry(print_results=print_unsmry)
 
         
     def __read_smspec(self, print_results=False):

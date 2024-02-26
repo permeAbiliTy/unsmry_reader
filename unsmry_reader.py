@@ -522,7 +522,7 @@ class SummaryData:
             #    - Eclipse File Formats Reference Manual
             #      Possible this may need modification to be compatible with
             #      WNAMES for Intersect if it supports named regions
-            i = list(zip(self.keywords_section, self.wgnames_section)).index((keyword, identifier))
+            i = list(zip(self.keywords_section, self.nums_section)).index((keyword, identifier))
 
         elif keyword[0] == 'S':  # Well segment data
             # "Well segment vectors require the well name and the segment number;
